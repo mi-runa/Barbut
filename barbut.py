@@ -1,216 +1,64 @@
-#2020  Giulentino  - Barbut pentru toti romanii
-
-import random
-import time
-optiune=int(input("⚀ La mai mica - apasa 1" "\n" "⚅ La mai mare - apasa 2" "\n" "  ""Iesi - apasa 0" "\nAlege:"))
-
-sarezaru1=random.randint(1, 6)
-sarezaru2=random.randint(1, 6)
-sarezaru3=sarezaru=random.randint(1, 6)
-sarezaru4=sarezaru=random.randint(1, 6)
+from random import randint
+from time import sleep
 
 
-#fct timp zar
-def zartimp():
-    for i in range(101):
-        time.sleep(0.005)
-        print('Se rotesc zarurile  %d%%\r'%i, end="")
-    print('\n')
+def da_cu_zaru(text, logo_zar):
+    # "Animatie"
+    for i in range(randint(7, 21)):
+        print(f"\r{logo_zar[randint(0, 5)]} {logo_zar[randint(0, 5)]}", end="", flush=True)
+        sleep(0.2)
 
-###fct la mai mica
-def zaru1jucator():
-    global logozar1
-    if sarezaru1==1:
-        logozar1="⚀"
-    elif sarezaru1==2:
-        logozar1="⚁"
-    elif sarezaru1==3:
-        logozar1="⚂"
-    elif sarezaru1==4:
-        logozar1="⚃"
-    elif sarezaru1==5:
-        logozar1="⚄"
-    elif sarezaru1==6:
-        logozar1="⚅"
+    # Zaruri finale
+    sarezaru1 = randint(1, 6)
+    sarezaru2 = randint(1, 6)
+
+    # Rezultat
+    suma_zaruri = sarezaru1 + sarezaru2
+    print(f"\r{logo_zar[sarezaru1 - 1]} {logo_zar[sarezaru2 - 1]}")
+    print(f"{text} {suma_zaruri}")
+    sleep(0.7)
+    return suma_zaruri
 
 
-def zaru2jucator():
-    global logozar2
-    if sarezaru2==1:
-        logozar2="⚀"
-    elif sarezaru2==2:
-        logozar2="⚁"
-    elif sarezaru2==3:
-        logozar2="⚂"
-    elif sarezaru2==4:
-        logozar2="⚃"
-    elif sarezaru2==5:
-        logozar2="⚄"
-    elif sarezaru2==6:
-        logozar2="⚅"
-
-
-def zaru1calculator():
-    global logozar3
-    if sarezaru3==1:
-            logozar3="⚀"
-    elif sarezaru3==2:
-            logozar3="⚁"
-    elif sarezaru3==3:
-            logozar3="⚂"
-    elif sarezaru3==4:
-            logozar3="⚃"
-    elif sarezaru3==5:
-            logozar3="⚄"
-    elif sarezaru3==6:
-            logozar3="⚅"
-
-def zaru2calculator():
-    global logozar4
-    if sarezaru4==1:
-        logozar4="⚀"
-    elif sarezaru4==2:
-        logozar4="⚁"
-    elif sarezaru4==3:
-        logozar4="⚂"
-    elif sarezaru4==4:
-        logozar4="⚃"
-    elif sarezaru4==5:
-        logozar4="⚄"
-    elif sarezaru4==6:
-        logozar4="⚅"
-
-### fct la mai mare
-def zaru3jucator():
-    global logozar5
-    if sarezaru1==1:
-        logozar5="⚀"
-    elif sarezaru1==2:
-        logozar5="⚁"
-    elif sarezaru1==3:
-        logozar5="⚂"
-    elif sarezaru1==4:
-        logozar5="⚃"
-    elif sarezaru1==5:
-        logozar5="⚄"
-    elif sarezaru1==6:
-        logozar5="⚅"
-
-def zaru4jucator():
-    global logozar6
-    if sarezaru2==1:
-        logozar6="⚀"
-    elif sarezaru2==2:
-        logozar6="⚁"
-    elif sarezaru2==3:
-        logozar6="⚂"
-    elif sarezaru2==4:
-        logozar6="⚃"
-    elif sarezaru2==5:
-        logozar6="⚄"
-    elif sarezaru2==6:
-        logozar6="⚅"
-
-def zaru5calculator():
-    global logozar7
-    if sarezaru3==1:
-        logozar7="⚀"
-    elif sarezaru3==2:
-        logozar7="⚁"
-    elif sarezaru3==3:
-        logozar7="⚂"
-    elif sarezaru3==4:
-        logozar7="⚃"
-    elif sarezaru3==5:
-        logozar7="⚄"
-    elif sarezaru3==6:
-        logozar7="⚅"
-
-def zaru6calculator():
-    global logozar8
-    if sarezaru4==1:
-            logozar8="⚀"
-    elif sarezaru4==2:
-            logozar8="⚁"
-    elif sarezaru4==3:
-            logozar8="⚂"
-    elif sarezaru4==4:
-            logozar8="⚃"
-    elif sarezaru4==5:
-            logozar8="⚄"
-    elif sarezaru4==6:
-            logozar8="⚅"
+# Lista cu logo-uri
+lista_logo_zar = ["⚀", "⚁", "⚂", "⚃", "⚄", "⚅"]
 
 while True:
-    if optiune == 1:
-        #barbut la mai mica
-        print("La mai mica")
-        #jucator1 zar1
-        zaru1jucator()
-        zar1_jucator1 = sarezaru1
-        #jucator1 zar2
-        zar2_jucator1 = sarezaru2
-        zaru2jucator()
-        sum_zar_jucator1=zar1_jucator1+zar2_jucator1
-        zartimp()
-        print("Ai dat:", logozar1, "+", logozar2," ", sum_zar_jucator1,"\n")
-        #print("Ai dat:", sum_zar_jucator1)
+    # Evitare eroare daca nu baga cifre
+    try:
+        optiune = int(input("⚀ La mai mica - apasa 1\n⚅ La mai mare - apasa 2\n  Iesi - apasa 0\nAlege: "))
+    except ValueError:
+        print("Alege o cifra bo$$!\n")
+        continue
 
-        #calculator
-        zar1_calculator =sarezaru3
-        zaru1calculator()
-        zar2_calculator = sarezaru4
-        zaru2calculator()
-        sum_zar_calculator=zar1_calculator+zar2_calculator
-        
-        print("Calculatoru a dat:", logozar3, "+", logozar4," ",sum_zar_calculator,"\n")
-
-        #conditie castig
-        if sum_zar_jucator1 < sum_zar_calculator:
-            print("Ai castigat.")
-        elif sum_zar_calculator == sum_zar_jucator1:
-            print("Egalitate mai da o data")
-        else:
-            print ("Te-a facut calculatoru. N-ai talent la zaruri")
-        break
-
-    elif optiune == 2:
-        #barbut la mai mare
-        print("La mai mare")
-        #jucator1
-        zar1_jucator1 = sarezaru1
-        zaru3jucator()
-
-        zar2_jucator1 = sarezaru2
-        zaru4jucator()
-        
-        sum_zar_jucator1=zar1_jucator1+zar2_jucator1
-        zartimp()
-        print("Ai dat:",logozar5,"+",logozar6," ", sum_zar_jucator1,"\n")
-        
-        
-        #calculator
-        #zar1
-        zar1_calculator =sarezaru3
-        zaru5calculator()
-        #zar2
-        zar2_calculator = sarezaru4
-        zaru6calculator()
-        sum_zar_calculator=zar1_calculator+zar2_calculator
-        
-        print("Calculatoru a dat:", logozar7,"+", logozar8," ", sum_zar_calculator,"\n")
-        
-        
-        #conditie castig
-        if sum_zar_jucator1 > sum_zar_calculator:
-            print("Ai castigat.","\n")
-        elif sum_zar_calculator == sum_zar_jucator1:
-            print("Egalitate mai da o data.")
-        else:
-            print ("Te-a facut calculatoru. N-ai talent la zaruri.","\n")
-        break
-    
-    elif optiune != 1 and optiune !=2:
+    # Alegere joc
+    if optiune == 0:
         print("Am inchis. Hai cu pacanelele 🂧🂧🂧")
         break
+    elif optiune == 1:
+        print("La mai mica")
+    elif optiune == 2:
+        print("La mai mare")
+    else:
+        print(f"{optiune} nu e o optiune.\n")
+        continue
 
+    # Se da cu zarul
+    sum_jucator = da_cu_zaru("Ai dat:", lista_logo_zar)
+    sum_calculator = da_cu_zaru("Calculatoru a dat:", lista_logo_zar)
+
+    # Alegere castigator
+    if sum_jucator == sum_calculator:
+        print("Egalitate mai da o data")
+    elif optiune == 1 and sum_jucator < sum_calculator or optiune == 2 and sum_jucator > sum_calculator:
+        print("Ai castigat.")
+    else:
+        print("Te-a facut calculatoru. N-ai talent la zaruri.")
+
+    # Inca o tura/ oprire joc
+    inca = input("Hai mai dam o data! (hai/orice alt raspuns): ")
+    if inca != 'hai':
+        print("Am inchis. Hai cu pacanelele 🂧🂧🂧")
+        break
+    else:
+        print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
